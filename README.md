@@ -2,7 +2,7 @@
 
 ![](https://blog.ikomia.com/wp-content/uploads/2021/02/logo_voc.png)
 
-Ikomia plugin to load Deep Learning image dataset in [PascalVOC 2012 format](http://host.robots.ox.ac.uk/pascal/VOC/index.html). It converts the dataset to the Ikomia format so that it can be connected to any Deep Learning training algorithms dedicated to object detection.
+Ikomia plugin to load Deep Learning image dataset in [PascalVOC 2012 format](http://host.robots.ox.ac.uk/pascal/VOC/index.html). It converts the dataset to the Ikomia format so that it can be connected to any Deep Learning training algorithms dedicated to object detection or instance segmentation.
 
 ### How to use it?
 Here are the steps:
