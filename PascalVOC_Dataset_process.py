@@ -45,7 +45,7 @@ class PascalVOC_DatasetProcess(core.CProtocolTask):
     def __init__(self, name, param):
         core.CProtocolTask.__init__(self, name)
         # Add input/output of the process here
-        self.addOutput(datasetio.IkDatasetIO(dataprocess.DatasetFormat.PASCAL_VOC))
+        self.addOutput(datasetio.IkDatasetIO("pascal_voc"))
         self.addOutput(dataprocess.CDblFeatureIO())
 
         # Create parameters class
@@ -116,7 +116,7 @@ class PascalVOC_DatasetProcessFactory(dataprocess.CProcessFactory):
         # relative path -> as displayed in Ikomia application process tree
         self.info.path = "Plugins/Python/Dataset"
         self.info.iconPath = "icons/logo_voc.png"
-        self.info.version = "1.0.0"
+        self.info.version = "1.1.0"
         self.info.keywords = "PascalVOC,dataset,annotation,train,dnn"
 
     def create(self, param=None):
