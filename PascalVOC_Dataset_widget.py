@@ -1,6 +1,7 @@
 from ikomia import utils, core, dataprocess
-import PascalVOC_Dataset_process as processMod
-#PyQt GUI framework
+from ikomia.utils import pyqtutils, qtconversion
+from PascalVOC_Dataset.PascalVOC_Dataset_process import PascalVOC_DatasetParam
+# PyQt GUI framework
 from PyQt5.QtWidgets import *
 
 
@@ -8,38 +9,38 @@ from PyQt5.QtWidgets import *
 # - Class which implements widget associated with the process
 # - Inherits core.CProtocolTaskWidget from Ikomia API
 # --------------------
-class PascalVOC_DatasetWidget(core.CProtocolTaskWidget):
+class PascalVOC_DatasetWidget(core.CWorkflowTaskWidget):
 
     def __init__(self, param, parent):
-        core.CProtocolTaskWidget.__init__(self, parent)
+        core.CWorkflowTaskWidget.__init__(self, parent)
 
         if param is None:
-            self.parameters = processMod.PascalVOC_DatasetParam()
+            self.parameters = PascalVOC_DatasetParam()
         else:
             self.parameters = param
 
         # Create layout : QGridLayout by default
         self.grid_layout = QGridLayout()
 
-        self.browse_ann_folder = utils.append_browse_file(grid_layout=self.grid_layout, label="Annotation folder",
-                                                         path=self.parameters.annotation_folder_path,
-                                                         mode=QFileDialog.Directory)
+        self.browse_ann_folder = pyqtutils.append_browse_file(grid_layout=self.grid_layout, label="Annotation folder",
+                                                              path=self.parameters.annotation_folder_path,
+                                                              mode=QFileDialog.Directory)
 
-        self.browse_img_folder = utils.append_browse_file(grid_layout=self.grid_layout, label="Image folder",
-                                                         path=self.parameters.image_folder_path,
-                                                         mode=QFileDialog.Directory)
+        self.browse_img_folder = pyqtutils.append_browse_file(grid_layout=self.grid_layout, label="Image folder",
+                                                              path=self.parameters.image_folder_path,
+                                                              mode=QFileDialog.Directory)
 
-        self.browse_instance_seg_folder = utils.append_browse_file(grid_layout=self.grid_layout,
-                                                                  label="Instance segmentation folder",
-                                                                  path=self.parameters.instance_seg_folder_path,
-                                                                  mode=QFileDialog.Directory)
+        self.browse_instance_seg_folder = pyqtutils.append_browse_file(grid_layout=self.grid_layout,
+                                                                       label="Instance segmentation folder",
+                                                                       path=self.parameters.instance_seg_folder_path,
+                                                                       mode=QFileDialog.Directory)
 
-        self.browse_class_file = utils.append_browse_file(grid_layout=self.grid_layout, label="Classes file",
-                                                         path=self.parameters.class_path,
-                                                         mode=QFileDialog.ExistingFile)
+        self.browse_class_file = pyqtutils.append_browse_file(grid_layout=self.grid_layout, label="Classes file",
+                                                              path=self.parameters.class_path,
+                                                              mode=QFileDialog.ExistingFile)
 
         # PyQt -> Qt wrapping
-        layout_ptr = utils.PyQtToQt(self.grid_layout)
+        layout_ptr = qtconversion.PyQtToQt(self.grid_layout)
 
         # Set widget layout
         self.setLayout(layout_ptr)

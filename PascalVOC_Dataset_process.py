@@ -1,52 +1,52 @@
 from ikomia import core, dataprocess
 from ikomia.dnn import datasetio, dataset
 import copy
-# Your imports below
+
 
 # --------------------
 # - Class to handle the process parameters
 # - Inherits core.CProtocolTaskParam from Ikomia API
 # --------------------
-class PascalVOC_DatasetParam(core.CProtocolTaskParam):
+class PascalVOC_DatasetParam(core.CWorkflowTaskParam):
 
     def __init__(self):
-        core.CProtocolTaskParam.__init__(self)
+        core.CWorkflowTaskParam.__init__(self)
         # Place default value initialization here
         self.annotation_folder_path = ""
         self.image_folder_path = ""
         self.instance_seg_folder_path = ""
         self.class_path = ""
 
-    def setParamMap(self, paramMap):
+    def setParamMap(self, param_map):
         # Set parameters values from Ikomia application
         # Parameters values are stored as string and accessible like a python dict
-        self.annotation_folder_path = paramMap["annotation_folder_path"]
-        self.image_folder_path = paramMap["image_folder_path"]
-        self.instance_seg_folder_path = paramMap["instance_seg_folder_path"]
-        self.class_path = paramMap["class_path"]
+        self.annotation_folder_path = param_map["annotation_folder_path"]
+        self.image_folder_path = param_map["image_folder_path"]
+        self.instance_seg_folder_path = param_map["instance_seg_folder_path"]
+        self.class_path = param_map["class_path"]
 
     def getParamMap(self):
         # Send parameters values to Ikomia application
         # Create the specific dict structure (string container)
-        paramMap = core.ParamMap()
-        paramMap["annotation_folder_path"] = self.annotation_folder_path
-        paramMap["image_folder_path"] = self.image_folder_path
-        paramMap["instance_seg_folder_path"] = self.instance_seg_folder_path
-        paramMap["class_path"] = self.class_path
-        return paramMap
+        param_map = core.ParamMap()
+        param_map["annotation_folder_path"] = self.annotation_folder_path
+        param_map["image_folder_path"] = self.image_folder_path
+        param_map["instance_seg_folder_path"] = self.instance_seg_folder_path
+        param_map["class_path"] = self.class_path
+        return param_map
 
 
 # --------------------
 # - Class which implements the process
 # - Inherits core.CProtocolTask or derived from Ikomia API
 # --------------------
-class PascalVOC_DatasetProcess(core.CProtocolTask):
+class PascalVOC_DatasetProcess(core.CWorkflowTask):
 
     def __init__(self, name, param):
-        core.CProtocolTask.__init__(self, name)
+        core.CWorkflowTask.__init__(self, name)
         # Add input/output of the process here
         self.addOutput(datasetio.IkDatasetIO("pascal_voc"))
-        self.addOutput(dataprocess.CDblFeatureIO())
+        self.addOutput(dataprocess.CNumericIO())
 
         # Create parameters class
         if param is None:
@@ -71,9 +71,9 @@ class PascalVOC_DatasetProcess(core.CProtocolTask):
         output = self.getOutput(0)
         output.has_bckgnd_class = True
         output.data = dataset.load_pascalvoc_dataset(param.annotation_folder_path,
-                                                       param.image_folder_path,
-                                                       param.instance_seg_folder_path,
-                                                       param.class_path)
+                                                     param.image_folder_path,
+                                                     param.instance_seg_folder_path,
+                                                     param.class_path)
 
         # Class labels output
         numeric_out = self.getOutput(1)
@@ -97,10 +97,10 @@ class PascalVOC_DatasetProcess(core.CProtocolTask):
 # - Factory class to build process object
 # - Inherits dataprocess.CProcessFactory from Ikomia API
 # --------------------
-class PascalVOC_DatasetProcessFactory(dataprocess.CProcessFactory):
+class PascalVOC_DatasetProcessFactory(dataprocess.CTaskFactory):
 
     def __init__(self):
-        dataprocess.CProcessFactory.__init__(self)
+        dataprocess.CTaskFactory.__init__(self)
         # Set process information as string here
         self.info.name = "PascalVOC_Dataset"
         self.info.shortDescription = "Load PascalVOC dataset"

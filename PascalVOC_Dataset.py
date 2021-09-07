@@ -1,6 +1,4 @@
 from ikomia import dataprocess
-import PascalVOC_Dataset_process as processMod
-import PascalVOC_Dataset_widget as widgetMod
 
 
 # --------------------
@@ -13,9 +11,11 @@ class PascalVOC_Dataset(dataprocess.CPluginProcessInterface):
         dataprocess.CPluginProcessInterface.__init__(self)
 
     def getProcessFactory(self):
+        from PascalVOC_Dataset.PascalVOC_Dataset_process import PascalVOC_DatasetProcessFactory
         # Instantiate process object
-        return processMod.PascalVOC_DatasetProcessFactory()
+        return PascalVOC_DatasetProcessFactory()
 
     def getWidgetFactory(self):
+        from PascalVOC_Dataset.PascalVOC_Dataset_widget import PascalVOC_DatasetWidgetFactory
         # Instantiate associated widget object
-        return widgetMod.PascalVOC_DatasetWidgetFactory()
+        return PascalVOC_DatasetWidgetFactory()
