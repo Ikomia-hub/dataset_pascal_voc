@@ -7,7 +7,7 @@ import copy
 # - Class to handle the process parameters
 # - Inherits core.CProtocolTaskParam from Ikomia API
 # --------------------
-class PascalVOC_DatasetParam(core.CWorkflowTaskParam):
+class DatasetPascalVocParam(core.CWorkflowTaskParam):
 
     def __init__(self):
         core.CWorkflowTaskParam.__init__(self)
@@ -40,7 +40,7 @@ class PascalVOC_DatasetParam(core.CWorkflowTaskParam):
 # - Class which implements the process
 # - Inherits core.CProtocolTask or derived from Ikomia API
 # --------------------
-class PascalVOC_DatasetProcess(core.CWorkflowTask):
+class DatasetPascalVoc(core.CWorkflowTask):
 
     def __init__(self, name, param):
         core.CWorkflowTask.__init__(self, name)
@@ -50,7 +50,7 @@ class PascalVOC_DatasetProcess(core.CWorkflowTask):
 
         # Create parameters class
         if param is None:
-            self.setParam(PascalVOC_DatasetParam())
+            self.setParam(DatasetPascalVocParam())
         else:
             self.setParam(copy.deepcopy(param))
 
@@ -97,12 +97,12 @@ class PascalVOC_DatasetProcess(core.CWorkflowTask):
 # - Factory class to build process object
 # - Inherits dataprocess.CProcessFactory from Ikomia API
 # --------------------
-class PascalVOC_DatasetProcessFactory(dataprocess.CTaskFactory):
+class DatasetPascalVocFactory(dataprocess.CTaskFactory):
 
     def __init__(self):
         dataprocess.CTaskFactory.__init__(self)
         # Set process information as string here
-        self.info.name = "PascalVOC_Dataset"
+        self.info.name = "dataset_pascal_voc"
         self.info.shortDescription = "Load PascalVOC dataset"
         self.info.description = "Load PascalVOC dataset. " \
                                 "This plugin converts a given dataset in PascalVOC 2012 format to Ikomia format. " \
@@ -121,4 +121,4 @@ class PascalVOC_DatasetProcessFactory(dataprocess.CTaskFactory):
 
     def create(self, param=None):
         # Create process object
-        return PascalVOC_DatasetProcess(self.info.name, param)
+        return DatasetPascalVoc(self.info.name, param)

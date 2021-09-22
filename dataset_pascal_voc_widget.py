@@ -1,6 +1,6 @@
 from ikomia import utils, core, dataprocess
 from ikomia.utils import pyqtutils, qtconversion
-from PascalVOC_Dataset.PascalVOC_Dataset_process import PascalVOC_DatasetParam
+from dataset_pascal_voc.dataset_pascal_voc_process import DatasetPascalVocParam
 # PyQt GUI framework
 from PyQt5.QtWidgets import *
 
@@ -9,13 +9,13 @@ from PyQt5.QtWidgets import *
 # - Class which implements widget associated with the process
 # - Inherits core.CProtocolTaskWidget from Ikomia API
 # --------------------
-class PascalVOC_DatasetWidget(core.CWorkflowTaskWidget):
+class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
 
     def __init__(self, param, parent):
         core.CWorkflowTaskWidget.__init__(self, parent)
 
         if param is None:
-            self.parameters = PascalVOC_DatasetParam()
+            self.parameters = DatasetPascalVocParam()
         else:
             self.parameters = param
 
@@ -61,13 +61,13 @@ class PascalVOC_DatasetWidget(core.CWorkflowTaskWidget):
 # - Factory class to build process widget object
 # - Inherits dataprocess.CWidgetFactory from Ikomia API
 # --------------------
-class PascalVOC_DatasetWidgetFactory(dataprocess.CWidgetFactory):
+class DatasetPascalVocWidgetFactory(dataprocess.CWidgetFactory):
 
     def __init__(self):
         dataprocess.CWidgetFactory.__init__(self)
         # Set the name of the process -> it must be the same as the one declared in the process factory class
-        self.name = "PascalVOC_Dataset"
+        self.name = "dataset_pascal_voc"
 
     def create(self, param):
         # Create widget object
-        return PascalVOC_DatasetWidget(param, None)
+        return DatasetPascalVocWidget(param, None)

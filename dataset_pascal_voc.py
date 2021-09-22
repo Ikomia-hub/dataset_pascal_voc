@@ -5,17 +5,17 @@ from ikomia import dataprocess
 # - Interface class to integrate the process with Ikomia application
 # - Inherits dataprocess.CPluginProcessInterface from Ikomia API
 # --------------------
-class PascalVOC_Dataset(dataprocess.CPluginProcessInterface):
+class IkomiaPlugin(dataprocess.CPluginProcessInterface):
 
     def __init__(self):
         dataprocess.CPluginProcessInterface.__init__(self)
 
     def getProcessFactory(self):
-        from PascalVOC_Dataset.PascalVOC_Dataset_process import PascalVOC_DatasetProcessFactory
+        from dataset_pascal_voc.dataset_pascal_voc_process import DatasetPascalVocFactory
         # Instantiate process object
-        return PascalVOC_DatasetProcessFactory()
+        return DatasetPascalVocFactory()
 
     def getWidgetFactory(self):
-        from PascalVOC_Dataset.PascalVOC_Dataset_widget import PascalVOC_DatasetWidgetFactory
+        from dataset_pascal_voc.dataset_pascal_voc_widget import DatasetPascalVocWidgetFactory
         # Instantiate associated widget object
-        return PascalVOC_DatasetWidgetFactory()
+        return DatasetPascalVocWidgetFactory()
