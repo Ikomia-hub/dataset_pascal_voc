@@ -43,9 +43,9 @@ class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
         layout_ptr = qtconversion.PyQtToQt(self.grid_layout)
 
         # Set widget layout
-        self.setLayout(layout_ptr)
+        self.set_layout(layout_ptr)
 
-    def onApply(self):
+    def on_apply(self):
         # Apply button clicked slot
         # Get parameters from widget
         self.parameters.annotation_folder_path = self.browse_ann_folder.path
@@ -54,7 +54,7 @@ class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
         self.parameters.class_path = self.browse_class_file.path
 
         # Send signal to launch the process
-        self.emitApply(self.parameters)
+        self.emit_apply(self.parameters)
 
 
 # --------------------
