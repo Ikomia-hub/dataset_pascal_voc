@@ -15,7 +15,7 @@ class DatasetPascalVocParam(core.CWorkflowTaskParam):
         self.annotation_folder_path = ""
         self.image_folder_path = ""
         self.instance_seg_folder_path = ""
-        self.class_path = ""
+        self.classes_path = ""
 
     def set_values(self, param_map):
         # Set parameters values from Ikomia application
@@ -23,7 +23,7 @@ class DatasetPascalVocParam(core.CWorkflowTaskParam):
         self.annotation_folder_path = param_map["annotation_folder_path"]
         self.image_folder_path = param_map["image_folder_path"]
         self.instance_seg_folder_path = param_map["instance_seg_folder_path"]
-        self.class_path = param_map["class_path"]
+        self.classes_path = param_map["classes_path"]
 
     def get_values(self):
         # Send parameters values to Ikomia application
@@ -31,7 +31,7 @@ class DatasetPascalVocParam(core.CWorkflowTaskParam):
         param_map = {"annotation_folder_path": self.annotation_folder_path,
                      "image_folder_path": self.image_folder_path,
                      "instance_seg_folder_path": self.instance_seg_folder_path,
-                     "class_path": self.class_path}
+                     "classes_path": self.classes_path}
         return param_map
 
 
@@ -72,7 +72,7 @@ class DatasetPascalVoc(core.CWorkflowTask):
         output.data = dataset.load_pascalvoc_dataset(param.annotation_folder_path,
                                                      param.image_folder_path,
                                                      param.instance_seg_folder_path,
-                                                     param.class_path)
+                                                     param.classes_path)
 
         # Class labels output
         numeric_out = self.get_output(1)

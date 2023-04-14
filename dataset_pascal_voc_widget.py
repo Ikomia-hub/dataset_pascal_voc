@@ -36,7 +36,7 @@ class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
                                                                        mode=QFileDialog.Directory)
 
         self.browse_class_file = pyqtutils.append_browse_file(grid_layout=self.grid_layout, label="Classes file",
-                                                              path=self.parameters.class_path,
+                                                              path=self.parameters.classes_path,
                                                               mode=QFileDialog.ExistingFile)
 
         # PyQt -> Qt wrapping
@@ -51,7 +51,7 @@ class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
         self.parameters.annotation_folder_path = self.browse_ann_folder.path
         self.parameters.image_folder_path = self.browse_img_folder.path
         self.parameters.instance_seg_folder_path = self.browse_instance_seg_folder.path
-        self.parameters.class_path = self.browse_class_file.path
+        self.parameters.classes_path = self.browse_class_file.path
 
         # Send signal to launch the process
         self.emit_apply(self.parameters)
