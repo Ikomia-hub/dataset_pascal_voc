@@ -14,7 +14,7 @@ class DatasetPascalVocParam(core.CWorkflowTaskParam):
         # Place default value initialization here
         self.annotation_folder = ""
         self.dataset_folder = ""
-        self.instance_seg_folder_path = ""
+        self.instance_seg_folder = ""
         self.class_file = ""
 
     def set_values(self, param_map):
@@ -22,7 +22,7 @@ class DatasetPascalVocParam(core.CWorkflowTaskParam):
         # Parameters values are stored as string and accessible like a python dict
         self.annotation_folder = param_map["annotation_folder"]
         self.dataset_folder = param_map["dataset_folder"]
-        self.instance_seg_folder_path = param_map["instance_seg_folder_path"]
+        self.instance_seg_folder = param_map["instance_seg_folder"]
         self.class_file = param_map["class_file"]
 
     def get_values(self):
@@ -30,7 +30,7 @@ class DatasetPascalVocParam(core.CWorkflowTaskParam):
         # Create the specific dict structure (string container)
         param_map = {"annotation_folder": self.annotation_folder,
                      "dataset_folder": self.dataset_folder,
-                     "instance_seg_folder_path": self.instance_seg_folder_path,
+                     "instance_seg_folder": self.instance_seg_folder,
                      "class_file": self.class_file}
         return param_map
 
@@ -71,7 +71,7 @@ class DatasetPascalVoc(core.CWorkflowTask):
         output.has_bckgnd_class = True
         output.data = dataset.load_pascalvoc_dataset(param.annotation_folder,
                                                      param.dataset_folder,
-                                                     param.instance_seg_folder_path,
+                                                     param.instance_seg_folder,
                                                      param.class_file)
 
         # Class labels output

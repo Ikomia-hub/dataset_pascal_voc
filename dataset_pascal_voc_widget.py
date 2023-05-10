@@ -32,7 +32,7 @@ class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
 
         self.browse_instance_seg_folder = pyqtutils.append_browse_file(grid_layout=self.grid_layout,
                                                                        label="Instance segmentation folder",
-                                                                       path=self.parameters.instance_seg_folder_path,
+                                                                       path=self.parameters.instance_seg_folder,
                                                                        mode=QFileDialog.Directory)
 
         self.browse_class_file = pyqtutils.append_browse_file(grid_layout=self.grid_layout, label="Classes file",
@@ -50,7 +50,7 @@ class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
         # Get parameters from widget
         self.parameters.annotation_folder = self.browse_ann_folder.path
         self.parameters.dataset_folder = self.browse_img_folder.path
-        self.parameters.instance_seg_folder_path = self.browse_instance_seg_folder.path
+        self.parameters.instance_seg_folder = self.browse_instance_seg_folder.path
         self.parameters.class_file = self.browse_class_file.path
 
         # Send signal to launch the process
