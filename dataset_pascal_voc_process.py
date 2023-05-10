@@ -12,26 +12,26 @@ class DatasetPascalVocParam(core.CWorkflowTaskParam):
     def __init__(self):
         core.CWorkflowTaskParam.__init__(self)
         # Place default value initialization here
-        self.annotation_folder_path = ""
-        self.image_folder_path = ""
+        self.annotation_folder = ""
+        self.dataset_folder = ""
         self.instance_seg_folder_path = ""
-        self.classes_path = ""
+        self.class_file = ""
 
     def set_values(self, param_map):
         # Set parameters values from Ikomia application
         # Parameters values are stored as string and accessible like a python dict
-        self.annotation_folder_path = param_map["annotation_folder_path"]
-        self.image_folder_path = param_map["image_folder_path"]
+        self.annotation_folder = param_map["annotation_folder"]
+        self.dataset_folder = param_map["dataset_folder"]
         self.instance_seg_folder_path = param_map["instance_seg_folder_path"]
-        self.classes_path = param_map["classes_path"]
+        self.class_file = param_map["class_file"]
 
     def get_values(self):
         # Send parameters values to Ikomia application
         # Create the specific dict structure (string container)
-        param_map = {"annotation_folder_path": self.annotation_folder_path,
-                     "image_folder_path": self.image_folder_path,
+        param_map = {"annotation_folder": self.annotation_folder,
+                     "dataset_folder": self.dataset_folder,
                      "instance_seg_folder_path": self.instance_seg_folder_path,
-                     "classes_path": self.classes_path}
+                     "class_file": self.class_file}
         return param_map
 
 
@@ -69,10 +69,10 @@ class DatasetPascalVoc(core.CWorkflowTask):
         # Get dataset output :
         output = self.get_output(0)
         output.has_bckgnd_class = True
-        output.data = dataset.load_pascalvoc_dataset(param.annotation_folder_path,
-                                                     param.image_folder_path,
+        output.data = dataset.load_pascalvoc_dataset(param.annotation_folder,
+                                                     param.dataset_folder,
                                                      param.instance_seg_folder_path,
-                                                     param.classes_path)
+                                                     param.class_file)
 
         # Class labels output
         numeric_out = self.get_output(1)

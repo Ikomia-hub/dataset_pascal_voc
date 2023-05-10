@@ -23,11 +23,11 @@ class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
         self.grid_layout = QGridLayout()
 
         self.browse_ann_folder = pyqtutils.append_browse_file(grid_layout=self.grid_layout, label="Annotation folder",
-                                                              path=self.parameters.annotation_folder_path,
+                                                              path=self.parameters.annotation_folder,
                                                               mode=QFileDialog.Directory)
 
         self.browse_img_folder = pyqtutils.append_browse_file(grid_layout=self.grid_layout, label="Image folder",
-                                                              path=self.parameters.image_folder_path,
+                                                              path=self.parameters.dataset_folder,
                                                               mode=QFileDialog.Directory)
 
         self.browse_instance_seg_folder = pyqtutils.append_browse_file(grid_layout=self.grid_layout,
@@ -36,7 +36,7 @@ class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
                                                                        mode=QFileDialog.Directory)
 
         self.browse_class_file = pyqtutils.append_browse_file(grid_layout=self.grid_layout, label="Classes file",
-                                                              path=self.parameters.classes_path,
+                                                              path=self.parameters.class_file,
                                                               mode=QFileDialog.ExistingFile)
 
         # PyQt -> Qt wrapping
@@ -48,10 +48,10 @@ class DatasetPascalVocWidget(core.CWorkflowTaskWidget):
     def on_apply(self):
         # Apply button clicked slot
         # Get parameters from widget
-        self.parameters.annotation_folder_path = self.browse_ann_folder.path
-        self.parameters.image_folder_path = self.browse_img_folder.path
+        self.parameters.annotation_folder = self.browse_ann_folder.path
+        self.parameters.dataset_folder = self.browse_img_folder.path
         self.parameters.instance_seg_folder_path = self.browse_instance_seg_folder.path
-        self.parameters.classes_path = self.browse_class_file.path
+        self.parameters.class_file = self.browse_class_file.path
 
         # Send signal to launch the process
         self.emit_apply(self.parameters)
