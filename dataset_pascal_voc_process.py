@@ -116,7 +116,7 @@ class DatasetPascalVocFactory(dataprocess.CTaskFactory):
         self.info.path = "Plugins/Python/Dataset"
         self.info.icon_path = "icons/logo_voc.png"
         self.info.version = "1.1.0"
-        self.info.keywords = "PascalVOC,dataset,annotation,train,dnn"
+        self.info.keywords = "PascalVOC, Dataset, Annotation, Data Loader"
 
     def create(self, param=None):
         # Create process object
