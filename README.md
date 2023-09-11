@@ -19,7 +19,7 @@
     </a> 
 </p>
 
-Load PascalVOC dataset. This plugin converts a given dataset in PascalVOC 2012 format to Ikomia format. Once loaded, all images can be visualized with their respective annotations. Then, any training algorithms from the Ikomia marketplace can be connected to this converter.
+Load PascalVOC dataset. This algorithm converts a given dataset in PascalVOC 2012 format to Ikomia format.
 
 
 ## :rocket: Use with Ikomia API
