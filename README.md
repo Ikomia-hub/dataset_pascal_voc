@@ -50,7 +50,7 @@ algo.set_parameters({
     "class_file": "path/to/classes/file.txt",
 })
 
-train.add_task(name="train_yolo_v8", auto_connect=True)
+train = wf.add_task(name="train_yolo_v8", auto_connect=True)
 
 # Run on your image  
 wf.run()
