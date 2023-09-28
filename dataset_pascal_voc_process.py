@@ -103,15 +103,10 @@ class DatasetPascalVocFactory(dataprocess.CTaskFactory):
         # Set process information as string here
         self.info.name = "dataset_pascal_voc"
         self.info.short_description = "Load PascalVOC dataset"
-        self.info.description = "Load PascalVOC dataset. " \
-                                "This plugin converts a given dataset in PascalVOC 2012 format to Ikomia format. " \
-                                "Once loaded, all images can be visualized with their respective annotations. " \
-                                "Then, any training algorithms from the Ikomia marketplace can be connected " \
-                                "to this converter."
         self.info.authors = "Ikomia team"
         self.info.license = "MIT License"
         self.info.documentation_link = "http://host.robots.ox.ac.uk/pascal/VOC/"
-        self.info.repo = "https://github.com/Ikomia-dev"
+        self.info.repository = "https://github.com/Ikomia-hub/dataset_pascal_voc"
         # relative path -> as displayed in Ikomia application process tree
         self.info.path = "Plugins/Python/Dataset"
         self.info.icon_path = "icons/logo_voc.png"
