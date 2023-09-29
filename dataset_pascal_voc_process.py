@@ -112,6 +112,8 @@ class DatasetPascalVocFactory(dataprocess.CTaskFactory):
         self.info.icon_path = "icons/logo_voc.png"
         self.info.version = "1.1.0"
         self.info.keywords = "PascalVOC, Dataset, Annotation, Data Loader"
+        self.info.algo_type = core.AlgoType.DATASET
+        self.info.algo_tasks = "CLASSIFICATION,OBJECT_DETECTION,INSTANCE_SEGMENTATION,SEMANTIC_SEGMENTATION,PANOPTIC_SEGMENTATION"
 
     def create(self, param=None):
         # Create process object
